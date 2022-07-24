@@ -46,7 +46,7 @@ jobs:
             npm run api:build
   test:
     docker:
-      - image: "circleci/node:16.16.0-browsers"
+      - image: "cimg/node:16.16.0-browsers"
     steps:
       - node/install
       - node/install-yarn
