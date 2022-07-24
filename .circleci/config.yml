@@ -51,6 +51,14 @@ jobs:
       - node/install-yarn
       - checkout
       - run:
+          name: install Front-End
+          command: |
+            npm run frontend:install
+      - run:
+          name: install api
+          command: |
+            npm run api:install
+      - run:
           name: Test Front-End
           command: |
             npm run frontend:test
