@@ -35,7 +35,7 @@ Provision the necessary AWS services needed for running the application:
 
 | Name                   |                          Value                          |
 | ---------------------- | :-----------------------------------------------------: |
-| AWS_REGION             |   The AWS region you used to provision RDS, S3 and EB   |
+| AWS_DEFAULT_REGION     |   The AWS region you used to provision RDS, S3 and EB   |
 | AWS_ACCESS_KEY_ID      |                 Your AWS Access key ID                  |
 | AWS_SECRET_ACCESS_KEY  |               Your AWS secret Access key                |
 | AWS_S3_ENDPOINT        |              The url of the S3 hosted app.              |
