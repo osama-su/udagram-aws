@@ -50,14 +50,14 @@ jobs:
       - node/install
       - node/install-yarn
       - checkout
-      - run: 
+      - run:
           name: Test Front-End
           command: |
-          npm run frontend:test
-      - run: 
+            npm run frontend:test
+      - run:
           name: Test API
-          command: | 
-          npm run api:test
+          command: |
+            npm run api:test
   # deploy step will run only after manual approval
   deploy:
     docker:
@@ -77,7 +77,6 @@ jobs:
           name: Deploy api
           command: |
             npm run api:deploy
-
 workflows:
   udagram:
     jobs:
