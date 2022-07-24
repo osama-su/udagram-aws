@@ -50,6 +50,7 @@ jobs:
     steps:
       - node/install
       - node/install-yarn
+      - browser-tools/install-browser-tools
       - checkout
       - run:
           name: install Front-End
