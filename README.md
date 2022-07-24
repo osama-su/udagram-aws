@@ -1,22 +1,8 @@
-# Hosting a Full-Stack Application
-
-### **You can use you own project completed in previous courses or use the provided Udagram app for completing this final project.**
-
----
-
-In this project you will learn how to take a newly developed Full-Stack application built for a retailer and deploy it to a cloud service provider so that it is available to customers. You will use the aws console to start and configure the services the application needs such as a database to store product information and a web server allowing the site to be discovered by potential customers. You will modify your package.json scripts and replace hard coded secrets with environment variables in your code.
-
-After the initial setup, you will learn to interact with the services you started on aws and will deploy manually the application a first time to it. As you get more familiar with the services and interact with them through a CLI, you will gradually understand all the moving parts.
-
-You will then register for a free account on CircleCi and connect your Github account to it. Based on the manual steps used to deploy the app, you will write a config.yml file that will make the process reproducible in CircleCi. You will set up the process to be executed automatically based when code is pushed on the main Github branch.
-
-The project will also include writing documentation and runbooks covering the operations of the deployment process. Those runbooks will serve as a way to communicate with future developers and anybody involved in diagnosing outages of the Full-Stack application.
+# Hosting a Full-Stack Application to AWS
 
 # Udagram
 
 This application is provided to you as an alternative starter project if you do not wish to host your own code done in the previous courses of this nanodegree. The udagram application is a fairly simple application that includes all the major components of a Full-Stack web application.
-
-
 
 ### Dependencies
 
@@ -43,6 +29,78 @@ Provision the necessary AWS services needed for running the application:
 1. From the root of the repo, navigate udagram-api folder `cd starter/udagram-api` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run dev`.
 1. Without closing the terminal in step 1, navigate to the udagram-frontend `cd starter/udagram-frontend` to intall the node_modules `npm install`. After installation is done start the api in dev mode with `npm run start`.
 
+### CIRCLE CI
+
+- Environment Variables
+
+| Name                   |                          Value                          |
+| ---------------------- | :-----------------------------------------------------: |
+| AWS_REGION             |   The AWS region you used to provision RDS, S3 and EB   |
+| AWS_ACCESS_KEY_ID      |                 Your AWS Access key ID                  |
+| AWS_SECRET_ACCESS_KEY  |               Your AWS secret Access key                |
+| AWS_S3_ENDPOINT        |              The url of the S3 hosted app.              |
+| AWS_PROFILE            |                    Your AWS profile                     |
+| AWS_BUCKET             |  The name of the S3 bucket used to host the front end   |
+| ---------------------- | ------------------------------------------------------- |
+| POSTGRES_HOST          |          The url of the RDS database instance           |
+| POSTGRES_DB            |                        postgres                         |
+| POSTGRES_USERNAME      |  The username specified when creating the RDS instance  |
+| POSTGRES_PASSWORD      |  The password specified when creating the RDS instance  |
+| DB_PORT                |   The port of the RDS db instance (5432 for postgres)   |
+
+### AWS
+
+- Create IAM user with `AdministratorAccess`
+
+- Configure the aws cli user with your terminal via `aws configure`
+
+### Create S3 Bucket
+
+- open terminal and run the following to create s3 bucket
+
+```bash
+aws s3api create-bucket \
+           --bucket udagram-os \
+           --region us-east-1
+```
+
+- Set Bucket Policy for S3 Bucket
+
+make sure u change `NAME_OF_YOUR_BUCKET` with your bucket name in my case will be `udagram-os`
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": ["s3:GetObject"],
+      "Resource": ["arn:aws:s3:::NAME_OF_YOUR_BUCKET/*"]
+    }
+  ]
+}
+```
+
+- in your s3 bucket properties go to static website hosing and enable it as below image and save the changes
+
+![images](./docs/images/s3-static-web-hosting.png)
+
+- you should have a url for example `http://udagram-os.s3-website-us-east-1.amazonaws.com/`
+
+- now it's time to upload you static files and this can be by
+
+```bash
+aws s3 sync build/ s3://udagram-os
+```
+
+Delete all resource after you finish
+
+```bash
+aws s3 rb s3://udagram-os --force
+```
+
 ## Testing
 
 This project contains two different test suite: unit tests and End-To-End tests(e2e). Follow these steps to run the tests.
@@ -61,11 +119,20 @@ Unit tests are using the Jasmine Framework.
 
 The e2e tests are using Protractor and Jasmine.
 
+## Deployment
+
+CI/CD (Continuous Integration/Continuous Delivery) Principles.
+using CircleCI.
+
 ## Built With
 
 - [Angular](https://angular.io/) - Single Page Application Framework
 - [Node](https://nodejs.org) - Javascript Runtime
 - [Express](https://expressjs.com/) - Javascript API Framework
+- [Postgres](https://www.postgresql.org/) - Database Framework
+- [AWS](https://aws.amazon.com/) - Cloud Platform
+- [TypeScript](https://www.typescriptlang.org/) - Javascript Compiler
+- [CircleCI](https://circleci.com/) - Continuous Integration Platform
 
 ## License
 
