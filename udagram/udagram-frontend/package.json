@@ -8,7 +8,7 @@
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
     "deploy": "npm install -f && npm run build && chmod +x bin/deploy.sh && bin/deploy.sh",
-    "test": "./node_modules/.bin/ng test --watch=false",
+    "test": "./node_modules/.bin/ng test --watch=false --browsers=ChromeHeadlessCI",
     "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e"
   },
