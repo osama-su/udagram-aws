@@ -48,6 +48,7 @@ jobs:
       - image: "cimg/base:stable"
     steps:
       - node/install
+      - chrome/install
       - node/install-yarn
       - checkout
       - run:
