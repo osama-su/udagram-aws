@@ -80,6 +80,14 @@ jobs:
       - aws-cli/setup
       - checkout
       - run:
+          name: install Front-End
+          command: |
+            npm run frontend:install
+      - run:
+          name: install api
+          command: |
+            npm run api:install
+      - run:
           name: Deploy Front-End
           command: |
             npm run frontend:deploy
