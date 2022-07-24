@@ -33,10 +33,6 @@ jobs:
             echo "NPM --version" 
             echo $(npm --version)
             npm run api:install
-      - run:
-          name: Front-End Lint
-          command: |
-            npm run frontend:lint
       # TODO: Build the frontend app
       - run:
           name: Front-End Build
