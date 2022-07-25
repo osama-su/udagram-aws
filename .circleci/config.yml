@@ -1,7 +1,5 @@
 version: 2.1
-Branches:
-only:
-  - main
+
 orbs:
   # orgs contain basc recipes and reproducible actions (install node, aws, etc.)
   node: circleci/node@5.0.2
@@ -102,6 +100,9 @@ workflows:
   udagram:
     jobs:
       - build
+          filters:
+            branches:
+              only: main
       - test:
           requires:
             - build
