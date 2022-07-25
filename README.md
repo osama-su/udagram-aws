@@ -3,6 +3,11 @@
 # Udagram
 
 This application is provided to you as an alternative starter project if you do not wish to host your own code done in the previous courses of this nanodegree. The udagram application is a fairly simple application that includes all the major components of a Full-Stack web application.
+visit [udagram](http://udagram-os.s3-website-us-east-1.amazonaws.com)
+
+## architecture diagram
+
+![image](./docs/images/diagram.png)
 
 ### Dependencies
 
@@ -83,9 +88,7 @@ make sure u change `NAME_OF_YOUR_BUCKET` with your bucket name in my case will b
 }
 ```
 
-- in your s3 bucket properties go to static website hosing and enable it as below image and save the changes
-
-![images](./docs/images/s3-static-web-hosting.png)
+- in your s3 bucket properties go to static website hosing and enable it.
 
 - you should have a url for example `http://udagram-os.s3-website-us-east-1.amazonaws.com/`
 
@@ -123,6 +126,22 @@ The e2e tests are using Protractor and Jasmine.
 
 CI/CD (Continuous Integration/Continuous Delivery) Principles.
 using CircleCI.
+
+## Elastic Beanstalk
+
+![images](./docs/images/eb.png)
+
+## RDS Database
+
+![images](./docs/images/RDS.png)
+
+## S3 Bucket
+
+![images](./docs/images/S3.png)
+
+## CircleCI
+
+![images](./docs/images/ci.png)
 
 ## Built With
 
