@@ -9,6 +9,10 @@ visit [udagram](http://udagram-os.s3-website-us-east-1.amazonaws.com)
 
 ![image](./docs/images/diagram.png)
 
+## Pipeline diagram
+
+![image](./docs/images/pipeline.png)
+
 ### Dependencies
 
 ```
@@ -142,6 +146,10 @@ using CircleCI.
 ## CircleCI
 
 ![images](./docs/images/ci.png)
+
+## CircleCI Environment Variables
+
+![images](./docs/images/circleci-env.png)
 
 ## Built With
 
