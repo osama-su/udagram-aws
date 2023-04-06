@@ -14,7 +14,9 @@
     "clean": "rm -rf www/ || true",
     "deploy": "npm run build && eb init udagram-osama --platform node.js --region us-east-1 && eb list && eb use udagram-osama-env && eb deploy",
     "build": "npm install . && npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
-    "test": "echo \"Error: no test specified\""
+    "test": "echo \"Error: no test specified\"",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "keywords": [],
   "author": "Gabriel Ruttner",
@@ -22,18 +24,19 @@
   "dependencies": {
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "^8.3.2",
-    "aws-sdk": "^2.429.0",
+    "aws-sdk": "^2.814.0",
     "bcryptjs": "2.4.3",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.2",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
-    "express": "^4.16.4",
-    "jsonwebtoken": "^8.5.1",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^9.0.0",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
-    "sequelize": "^5.21.4",
-    "sequelize-typescript": "^0.6.9"
+    "sequelize": "^6.29.0",
+    "sequelize-typescript": "^0.6.9",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.26",
@@ -51,5 +54,6 @@
     "mocha": "^6.1.4",
     "ts-node-dev": "^1.0.0-pre.32",
     "typescript": "^3.9.10"
-  }
+  },
+  "snyk": true
 }
